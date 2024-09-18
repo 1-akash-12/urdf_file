@@ -1,0 +1,186 @@
+<?xml version="1.0" ?>
+<robot name="vehicle_demo">
+
+<material name="silver">
+  <color rgba="0.700 0.700 0.700 1.000"/>
+</material>
+
+<link name="base_link">
+  <inertial>
+    <origin xyz="0.0001496038021972566 -3.7106655860463863e-06 0.5881393465343613" rpy="0 0 0"/>
+    <mass value="726.1070811473326"/>
+    <inertia ixx="78.07046734465393" iyy="131.959467748026" izz="103.60280206008548" ixy="-0.0002643353040236655" iyz="0.00022789467034638254" ixz="-0.4627714692845455"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_wheel1">
+  <inertial>
+    <origin xyz="-5.551115123125783e-17 0.03999350250924549 0.0" rpy="0 0 0"/>
+    <mass value="20.44838994765809"/>
+    <inertia ixx="0.4836981779333973" iyy="0.9455915911746313" izz="0.4836981779334213" ixy="-8.881784197001252e-16" iyz="0.0" ixz="-8.881784197001252e-16"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.39 -0.4 -0.3" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/left_wheel1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="0.39 -0.4 -0.3" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/left_wheel1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_wheel1">
+  <inertial>
+    <origin xyz="0.0 -0.04000879409038888 0.0" rpy="0 0 0"/>
+    <mass value="20.444369876860492"/>
+    <inertia ixx="0.4835567391024451" iyy="0.9453209383840555" izz="0.48355673910247" ixy="4.440892098500626e-16" iyz="-4.440892098500626e-16" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.39 0.4 -0.3" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/right_wheel1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="0.39 0.4 -0.3" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/right_wheel1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="caster_wheel1">
+  <inertial>
+    <origin xyz="-0.19999999999999984 -7.546047120499111e-17 -0.04750000000000003" rpy="0 0 0"/>
+    <mass value="17.97823519906563"/>
+    <inertia ixx="0.04726028577954179" iyy="0.04726028577954411" izz="0.06310360554871863" ixy="-5.724587470723463e-17" iyz="-1.7780915628762273e-17" ixz="-1.6653345369377348e-16"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.569 0.0015 -0.12" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/caster_wheel1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="-0.569 0.0015 -0.12" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/caster_wheel1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lidar1">
+  <inertial>
+    <origin xyz="-5.551115123125783e-17 -1.6058683520845758e-17 0.045358979384899856" rpy="0 0 0"/>
+    <mass value="17.783608225791774"/>
+    <inertia ixx="0.04682828344427037" iyy="0.04682828344427392" izz="0.06412458739960591" ixy="-1.427906681783495e-17" iyz="7.567453234405628e-17" ixz="1.7763568394002505e-15"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.37 -0.0 -1.125" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lidar1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="-0.37 -0.0 -1.125" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lidar1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Revolute_1" type="continuous">
+  <origin xyz="-0.39 0.4 0.3" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="left_wheel1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+<transmission name="Revolute_1_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="Revolute_1">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="Revolute_1_actr">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<joint name="Revolute_2" type="continuous">
+  <origin xyz="-0.39 -0.4 0.3" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="right_wheel1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+<transmission name="Revolute_2_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="Revolute_2">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="Revolute_2_actr">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<joint name="Revolute_3" type="continuous">
+  <origin xyz="0.569 -0.0015 0.12" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="caster_wheel1"/>
+  <axis xyz="0.0 0.0 -1.0"/>
+</joint>
+<transmission name="Revolute_3_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="Revolute_3">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="Revolute_3_actr">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<joint name="Revolute_4" type="continuous">
+  <origin xyz="0.37 0.0 1.125" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lidar1"/>
+  <axis xyz="0.0 0.0 1.0"/>
+</joint>
+<transmission name="Revolute_4_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="Revolute_4">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="Revolute_4_actr">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+</robot>
